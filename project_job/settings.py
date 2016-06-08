@@ -25,8 +25,25 @@ SECRET_KEY = 'b8-vudf-*bgbe3h8ylth8i91h!6yws4awfyg4z(d%9!x@)=(jn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ '*' ]
 
+#for sending registration email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_USE_LTS = True
+EMAIl_HOST = 'smtp.gmail.com'
+EMAIl_HOST_USER = 'tripathiraghav604@gmail.com'
+EMAIl_HOST_PASSWORD = '9451086967'
+EMAIL_PORT = 587
+EMAIL_USE_LTS = True
+SERVER_MAIL = 'tripathiraghav604@gmail.com'
+DEFAULT_FROM_MAIL = 'raghav'
+
+'''
+If using gmail, you will need to
+unlock Captcha to enable Django
+to  send for you:
+https://accounts.google.com/displayunlockcaptcha
+'''
 
 # Application definition
 
@@ -35,8 +52,12 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    #'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'analysis',
+    'registration',
+    'crispy_forms'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -55,7 +76,7 @@ ROOT_URLCONF = 'project_job.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +97,12 @@ WSGI_APPLICATION = 'project_job.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'project_job',
+        'USER': 'root',
+        'PASSWORD': 'raghvendra',
+        'HOST': '',
+        'PORT': '',
     }
 }
 
@@ -119,3 +144,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#Django redux settings
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = False
+
+SITE_ID = 1
