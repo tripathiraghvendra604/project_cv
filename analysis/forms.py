@@ -1,6 +1,11 @@
 from django import forms
 from .models import UserInfo
 
+
+
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
@@ -11,3 +16,6 @@ class UserInfoForm(forms.ModelForm):
             'place_of_birth',
             'image',
         ]
+        widgets = {
+            'dob': DateInput(),
+        }
