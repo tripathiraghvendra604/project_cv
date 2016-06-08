@@ -3,5 +3,6 @@ from . import views
 
 urlpatterns = [
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^home$', views.home, name='home'),
 
 ]
