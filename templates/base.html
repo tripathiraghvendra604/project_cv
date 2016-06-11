@@ -1,10 +1,15 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/css/educational.css" />
+</head>
 
 <body>
 
     <div id="content">
+    {% load staticfiles %}
+
     {% block content %}{% endblock %}
     </div>
 

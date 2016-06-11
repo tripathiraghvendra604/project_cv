@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/static/css/add.css">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script type="text/javascript">
+
+var app = angular.module('app', []);
+
+app.controller('formCtrl', function($scope){
+
+  $scope.requestedData = [
+    {confirmed: false, subject: '', marks: '', mmarks: ''}
+  ];
+
+
+  $scope.agregarCampos = function () {
+    $scope.requestedData.push({confirmed: false, subject: '', marks: '', mmarks: ''});
+  };
+
+
+  $scope.removerCampos = function () {
+    var i = this.$index;
+    $scope.requestedData.splice(i,1);
+
+  };
+
+});
+
+
+
+  </script>
+</head>
+<body>
+
+
+<section ng-app="app" ng-controller="formCtrl" class="module">
+  <form method="post" role="form" novalidate action="" enctype="multipart/form-data">
+      {% csrf_token %}
+
+<div>
+
+  <h1>10th Standard</h1>
+  <table style="width:100%">
+  <tr>
+    <td align="center"><label>Board:</label></td>
+    <td align="center"><input type="text" id="id_ten_board" name="ten_board"  placeholder="Enter Your Board" ng-model="board10" ng-disabled="checked" ng-required="true"></td>
+  </tr>
+  <tr>
+    <td align="center"><label>Percentage:</label></td>
+    <td align="center"><input type="number" id="id_ten_percent" name="ten_percent" placeholder="Percentage/GPA" ng-model="percentage10" ng-disabled="checked" ng-required="true"></td>
+
+   </tr>
+   <tr>
+        <td align="center"><label for="fileName">Select a file</label></td>
+          <td align="center">
+          <!--<input id="uploadFile" placeholder="Choose File" disabled="disabled" />
+          <div class="fileUpload btn btn-primary">
+              <span>Upload</span>
+              <input id="uploadBtn" type="file" class="upload" />
+          </div>-->
+          <input id="id_ten_file" name="ten_file" value="{{ current_name }}" type='file' class="upload" />
+          </td>
+
+
+   </tr>
+  </table>
+  </div>
+
+
+
+<div>
+  <h1>Graduation</h1>
+  <table style="width:100%">
+  <tr>
+    <td align="center"><label>Course:</label></td>
+    <td>
+        <select name="g_board" id="id_g_board" >
+            {% for x in g %}
+                <option value="{{ x }}"> {{ x }}</option>
+            {% endfor %}
+        </select>
+
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><label>Percentage:</label></td>
+    <td align="center"><input id="id_g_percent" name="g_percent" type="text" placeholder="Percentage/GPA" ng-model="grpercentage" ></td>
+
+   </tr>
+   <tr>
+        <td align="center"><label for="fileName">Select a file</label></td>
+          <td align="center">
+          <input id="id_g_file" name="g_file" type="file" class="upload" />
+          </td>
+
+
+   </tr>
+  </table>
+  </div>
+
+
+<div>
+  <h1>Post Graduation</h1>
+  <table style="width:100%">
+  <tr>
+    <td align="center"><label>Course:</label></td>
+    <td align="center">
+        <select name="pg_board" id="id_pg_board" >
+            {% for x in pg %}
+                <option value="{{ x }}"> {{ x }}</option>
+            {% endfor %}
+        </select>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><label>Percentage:</label></td>
+    <td align="center"><input id="id_pg_percent" name="pg_percent" type="text" placeholder="Percentage/GPA" ng-model="percentage" ></td>
+
+   </tr>
+   <tr>
+        <td align="center"><label for="fileName">Select a file</label></td>
+          <td align="center">
+          <input id="id_pg_file" name="pg_file" type="file" class="upload" />
+          </td>
+
+
+   </tr>
+  </table>
+  </div>
+
+
+
+      <input class="btn btn-primary" type="submit" value="submit">Submit</input>
+
+    </form>
+  
+  
+</section>
+
+</body>
+</html>
