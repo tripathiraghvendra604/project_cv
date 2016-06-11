@@ -43,8 +43,13 @@ class UserInfo(models.Model):
 
 
 class UnderGraduateCouses(models.Model):
-    courses = models.CharField(max_length= 100)
+    courses = models.CharField(max_length= 100, unique=True)
 
+    def __str__(self):
+        return self.courses
 
 class PostGraduateCourses(models.Model):
-    courses = models.CharField(max_length=100)
+    courses = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.courses
