@@ -39,14 +39,14 @@ class EducationalInfo(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     high_school = models.TextField()
     high_school_doc = models.FileField(null=True, blank=True)
-    intermediate = models.TextField()
-    intermediate_doc = models.FileField(null=True, blank=True)
+    # intermediate = models.TextField()
+    # intermediate_doc = models.FileField(null=True, blank=True)
     graduation = models.TextField()
     graduation_doc = models.FileField(null=True, blank=True)
     post_graduation = models.TextField()
     post_graduation_doc = models.FileField(null=True, blank=True)
     def __unicode__(self):
-        return self.user
+        return self.high_school
 
 
 class UnderGraduateCourse(models.Model):

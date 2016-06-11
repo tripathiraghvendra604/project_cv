@@ -1,0 +1,77 @@
+
+
+.module {
+  display: table;
+}
+
+li {
+  margin: 12px 0;
+}
+
+input {
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: 14px;
+  border: none;
+  border-bottom: solid 1px #eee;
+  height: 40px;
+  vertical-align: middle;
+}
+input:focus {
+  outline: 0;
+}
+input.ng-invalid, input.ng-valid {
+  box-shadow: none;
+}
+input.ng-invalid {
+  border-color: red;
+}
+input.ng-valid {
+  border-color: green;
+}
+input.ng-pristine {
+  border-color: #eee;
+}
+
+.remove:disabled {
+  display: none;
+}
+
+input[type=text], input[type=number]{
+    font-size: 16px;
+    transition: background .2s, border-color .2s;
+  }
+
+  input[type=text]:focus, input[type=number]:focus{
+      border-bottom: 2px solid #00796B;
+}
+
+input[type=button]{
+  padding: 0;
+}
+
+input[type=file]{
+  border-bottom: 0;
+}
+
+label{
+  font-size: 16px;
+}
+
+
+/*.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}*/
