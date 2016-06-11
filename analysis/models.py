@@ -34,12 +34,16 @@ class UserInfo(models.Model):
     def __str__(self):
         return self.fname
 
-#
-# class EducationalInfo(models.Model):
-#     user = models.ForeignKey(settings.AUTH_USER_MODEL)
-#     high_school = models.TextField()
-#     intermediate = models.TextField()
-#     graduation = models.FloatField()
+
+class EducationalInfo(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    high_school = models.TextField()
+    intermediate = models.TextField()
+    graduation = models.TextField()
+    post_graduation = models.TextField()
+
+    def __str__(self):
+        return self.user
 
 
 class UnderGraduateCouses(models.Model):
