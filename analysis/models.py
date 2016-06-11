@@ -38,22 +38,25 @@ class UserInfo(models.Model):
 class EducationalInfo(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     high_school = models.TextField()
+    high_school_doc = models.FileField(null=True, blank=True)
     intermediate = models.TextField()
+    intermediate_doc = models.FileField(null=True, blank=True)
     graduation = models.TextField()
+    graduation_doc = models.FileField(null=True, blank=True)
     post_graduation = models.TextField()
-
-    def __str__(self):
+    post_graduation_doc = models.FileField(null=True, blank=True)
+    def __unicode__(self):
         return self.user
 
 
-class UnderGraduateCouses(models.Model):
+class UnderGraduateCourse(models.Model):
     courses = models.CharField(max_length= 100, unique=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.courses
 
-class PostGraduateCourses(models.Model):
+class PostGraduateCourse(models.Model):
     courses = models.CharField(max_length=100, unique=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.courses
