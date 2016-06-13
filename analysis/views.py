@@ -29,6 +29,7 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
+
 def education(request):
 
     # g and p are for choices for graduate
@@ -36,17 +37,53 @@ def education(request):
 
     g = UnderGraduateCourse.objects.all()
     pg = PostGraduateCourse.objects.all()
-
+    #print request.POST
     form = EducationForm(request.POST or None, request.FILES or None)
     if form.is_valid():
+        data_dict = dict(request.POST)
 
+        # for twelve data saving
+        #print data_dict
+        inter = {}
+        # marks will be a dict whose key will be subject name
+        # and value will be a list whose first value is marks and second value
+        # is the maximum marks in the subject
+        marks = {}
+
+        twelve_board = data_dict.get('Board12')
+        twelve_percent = data_dict.get('Percent12')
+        twelve_file = str(form.cleaned_data.get('File12'))
+        twelve_marks_list = data_dict.get('MarksScored12[]')
+        twelve_subjects_list = data_dict.get('Subject12[]')
+        twelve_max_marks_list = data_dict.get('MaximumMarks12[]')
+        inter['board'] = twelve_board
+        inter['percent'] = twelve_percent
+        for i in range(len(twelve_subjects_list)):   # for marks dict
+            marks[twelve_subjects_list[i]] = [twelve_marks_list[i], twelve_max_marks_list[i]]
+
+        inter['board'] = twelve_board
+        inter['percent'] = twelve_percent
+        inter['marks'] = marks
+
+        t= json.dumps(inter)
+        print t
+        print type(t)
+
+
+
+        # MarksScored12 = list(request.POST.get('MarksScored12[]'))
+        # Subject12 = list(request.POST.get('Subject12[]'))
+        # print str(MarksScored12) + ' is marks scored in 12'
+        # print str(Subject12) + ' is Subject12 in 12'
+        #print form.cleaned_data
         # for high school data saving
         high = {}
         ten_board = form.cleaned_data.get('ten_board')
         ten_percent = form.cleaned_data.get('ten_percent')
-        ten_file = form.cleaned_data.get('ten_file')
+        ten_file = (form.cleaned_data.get('ten_file'))
         high['board'] = ten_board
         high['percent'] = ten_percent
+        #high['doc'] = ten_file
         h = json.dumps(high)
 
         graduate = {}
@@ -69,14 +106,19 @@ def education(request):
         # saving data in database
         data = EducationalInfo(user=user,
                                high_school=h, high_school_doc=ten_file,
+                               intermediate= t, intermediate_doc=twelve_file,
                                graduation = g, graduation_doc=g_file,
                                post_graduation=p, post_graduation_doc=pg_file)
         data.save()
         print 'data saved'
+
+    else:
+        print 'invalid form'
 
     context = {
         'form': form,
         'g' : g,
         'pg': pg,
     }
+
     return render(request, 'educational.html', context)

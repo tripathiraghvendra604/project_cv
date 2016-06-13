@@ -11,32 +11,37 @@
 
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script type="text/javascript">
-
 var app = angular.module('app', []);
-
 app.controller('formCtrl', function($scope){
-
   $scope.requestedData = [
     {confirmed: false, subject: '', marks: '', mmarks: ''}
   ];
-
-
   $scope.agregarCampos = function () {
     $scope.requestedData.push({confirmed: false, subject: '', marks: '', mmarks: ''});
   };
-
-
   $scope.removerCampos = function () {
     var i = this.$index;
     $scope.requestedData.splice(i,1);
-
   };
+});
+  </script>
+
+     <script>
+       $(document).ready(function(){
+     $('.insert-more').click(function() {
+           $("#mytable").append("<tr><th><input type='text' id='id_Subject12' placeholder='Subject' name='Subject12[]'></th>"+
+           "<th><input type='number' 'id_MarksScored12' placeholder='Marks Scored' name='MarksScored12[]'></th>"+
+           "<th><input type='number' id='id_MaximumMarks12' placeholder='Maximum Marks' name='MaximumMarks12[]'></th>"+
+           "<th><input type='button' id='id_Remove12' class='remove' style='width: 40px; height: 40px; border-radius: 50%;color: #fff;"+
+           "font-size: 20px;background: #D32F2F;' value='&times'></th></tr>");
+
+     });
+
 
 });
-
-
-
   </script>
+
+
 </head>
 <body>
 
@@ -73,6 +78,48 @@ app.controller('formCtrl', function($scope){
    </tr>
   </table>
   </div>
+
+<div>
+  <h1>12th standard</h1>
+  <table style="width:100%">
+  <tr>
+    <td align="center"><label>Board:</label></td>
+    <td align="center"><input type="text" id="id_Board12" name="Board12" placeholder="Enter Your Board" ng-model="board" ng-disabled="checked" ng-required="true"></td>
+  </tr>
+  <tr>
+    <td align="center"><label>Percentage:</label></td>
+    <td align="center"><input type="text" name="Percent12" id="id_Percent12" placeholder="Percentage/GPA" ng-model="percentage" ng-disabled="checked" ng-required="true"></td>
+
+   </tr>
+   <tr>
+        <td align="center"><label for="fileName">Select a file</label></td>
+          <td align="center">
+          <input id="id_File12" name="File12" type="file" class="upload" />
+          </td>
+
+
+   </tr>
+  </table>
+
+
+    <ul style="list-style:none;">
+      <li>
+
+    <table id="mytable">
+    <tr>
+        <th><input type="text" id='id_Subject12' placeholder="Subject" name="Subject12[]"></th>
+
+        <th><input type="number" id='id_MarksScored12' placeholder="Marks Scored" name="MarksScored12[]"></th>
+        <th><input type="number" id='id_MaximumMarks12' placeholder="Maximum Marks" name="MaximumMarks12[]"></th>
+
+        <th><input type="button" id='id_Remove12' name="Remove12" class="remove" style="width: 40px; height: 40px; border-radius: 50%; color: #fff; font-size: 20px; background: #D32F2F;" value="&times;"></th>
+
+        <th><input type="button" id='id_Add12' name="Add12" ng-model="checked" class="insert-more" style="width: 40px; height: 40px; border-radius: 50%; color: #fff; font-size: 20px; background: #6495ed;" value="+"></th>
+        </tr>
+        </table>
+      </li>
+    </ul>
+</div>
 
 
 
@@ -135,7 +182,6 @@ app.controller('formCtrl', function($scope){
    </tr>
   </table>
   </div>
-
 
 
       <input class="btn btn-primary" type="submit" value="submit">Submit</input>

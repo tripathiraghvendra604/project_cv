@@ -42,15 +42,15 @@ class EducationForm(forms.Form):
     ten_percent = forms.IntegerField(max_value=100)
     ten_file = forms.FileField()
 
-    # twelve_board = forms.CharField(max_length=100)
-    # twelve_percent = forms.IntegerField()
-    # twelve_file = forms.FileField()
-    # twelve_sub = forms.CharField(max_length=100)
-    # twelve_marks = forms.IntegerField()
-    # twelve_max_marks = forms.IntegerField()
+    # Board12 = forms.CharField(max_length=100)
+    # Percent12 = forms.IntegerField()
+    File12 = forms.FileField()
+    # Subject12 = forms.Textarea()
+    # MarksScored12 = forms.Textarea()
+    # MaximumMarks12 = forms.Textarea()
     # twelve_plus = forms.CharField(widget=forms.Textarea, max_length=500)
     # twelve_minus = forms.CharField(widget=forms.Textarea, max_length=500)
-    #
+
     g_board = forms.CharField(max_length=100)
     g_percent = forms.IntegerField(max_value=100)
     g_file = forms.FileField()
